@@ -14,25 +14,25 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    date: "july 2025 - august 2025",
-    role: "testing & automation intern",
-    org: "NOKIA — Ottawa, ON",
+    date: "July 2025 – August 2025",
+    role: "Software Automation & Testing Intern",
+    org: "Nokia — Ottawa, ON",
     description:
       "Built automated BDD and API test suites in Python (Radish framework), cutting manual regression time ~20% and surfacing 15+ defects while working across 4 cross-functional engineering teams.",
     images: ["exp-nokia.png"],
   },
   {
-    date: "january 2024 - august 2025",
-    role: "data analyst (fswep)",
-    org: "RCMP — Ottawa, ON",
+    date: "January 2024 – August 2025",
+    role: "Data Analyst (FSWEP)",
+    org: "Royal Canadian Mounted Police (RCMP) — Ottawa, ON",
     description:
       "Processed and analyzed 500+ Access to Information and Privacy (ATIP) records across federal case files, reduced the departmental processing backlog by prioritizing high-volume record batches, and managed confidential records in line with federal privacy protocols.",
-    photoSlots: 2,
+    images: ["exp-rcmp.jpg"],
   },
   {
-    date: "month year - present",
-    role: "role title",
-    org: "organization name",
+    date: "Month Year – Present",
+    role: "Role Title",
+    org: "Organization Name",
     description: "Details coming soon.",
     photoSlots: 1,
   },
