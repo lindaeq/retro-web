@@ -125,7 +125,7 @@ export default function DeskWidgets({ music, onOpen }: Props) {
         data-item="1"
         onPointerDown={(e) => startDrag("note", e)}
         style={{
-          ...place("note", 300, 210),
+          ...place("note", 300, 218),
           ...sx("cursor:grab;background:#ffe3a8;border:4px solid #2b1a14;box-shadow:8px 8px 0 #2b1a14;padding:22px 22px 18px"),
         }}
       >
@@ -141,9 +141,13 @@ export default function DeskWidgets({ music, onOpen }: Props) {
         <div style={sx("font:400 26px/1.15 var(--vt),monospace")}>
           currently:
           <br />
-          <b style={sx("font-weight:400;background:#ff9ccd;padding:0 4px")}>studying for midterms :(</b>
-          <br />
-          duolingo streak: 689
+          <b style={sx("font-weight:400;background:#ff9ccd;padding:0 4px")}>studying for finals</b>
+        </div>
+        <div style={sx("margin-top:12px;padding-top:8px;border-top:2px dashed #2b1a14;font:400 12px/1.45 var(--courier),monospace")}>
+          <span className="lab" style={sx("display:block;font-size:9px;margin-bottom:2px;color:#8a5a38")}>
+            SITE TECH STACK
+          </span>
+          Next.js · React · TypeScript · Tailwind CSS · Web Audio API
         </div>
       </div>
     </aside>
