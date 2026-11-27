@@ -1,56 +1,100 @@
-# linda qi — portfolio site
+# Linda Qi — Personal Portfolio
 
-A one-screen "little computer" desktop built with Next.js (App Router) + TypeScript. No page scroll: the whole site lives inside the computer. Click the files on the left (or the camera keys / menubar) and they open in the beige monitor's window. The widgets on the right can be dragged around, but only inside their own zone.
+An interactive, single-screen retro desktop portfolio built with **Next.js (App Router)** and **TypeScript**. Designed to fit entirely within a single viewport without page scrolling, the interface mimics a vintage desktop computer complete with a camera-inspired navigation bar, Finder-style monitor windows, Web Audio chiptune playback, and draggable desktop widgets.
 
-## Getting started
+**Live Demo:** `[Add live URL here]`
 
-```bash
-npm install
-npm run dev
-```
+---
 
-Then open http://localhost:3000.
+## Features
 
-## Where everything lives
+* **Single-Screen Desktop OS:** Zero-scroll layout where clicking desktop file icons, camera keys, or top menubar items dynamically renders content inside a beige monitor window.
+* **Camera Plate Navigation:** Custom navigation bar featuring a mode dial, nameplate, quick-access file keys, and a shutter button with audio/visual flash feedback.
+* **Draggable Desk Widgets:** Interactive right-hand desk zone (This PC, music CD, liner notes, mini player, sticky note) powered by custom boundary-clamped drag physics.
+* **Built-in Web Audio Synth & Music Player:** Custom `useChiptune` hook that synthesizes 8-bit tracks directly in the browser via the Web Audio API, alongside MP3 playback support, an animated equalizer, and an embedded Spotify player.
+* **Modular Content Architecture:** Portfolio sections (About, Projects, Experience, Resume, Design, Misc, Contact) are driven by typed data arrays for straightforward updates.
 
-```
+---
+
+## Tech Stack
+
+* **Framework:** Next.js (App Router)
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS + Custom CSS (`globals.css` & inline style utility `sx`)
+* **Typography:** `next/font` (`Righteous`, `VT323`, `Silkscreen`, `Courier Prime`)
+* **Audio:** Web Audio API (custom chiptune synthesizer + shutter SFX)
+
+---
+
+## Getting Started
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com
+   cd your-repo-name
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## Project Structure
+
+```text
 src/
-  app/
-    layout.tsx        → loads fonts (Righteous, VT323, Silkscreen, Courier Prime) via next/font
-    page.tsx          → renders <Desk />
-    globals.css       → all the desk styling (palette, monitor, window, animations)
-  components/
-    Desk.tsx          → page shell: which screen is open + the shutter flash
-    Nav.tsx           → menubar + camera plate (dial, LINDA plate, file keys, shutter)
-    FileIcons.tsx     → left-hand file icons (about.txt, projects, ...)
-    Monitor.tsx       → the beige monitor + finder-style window; picks the screen to show
-    About.tsx         → typing tagline + the "say hello" popup
-    Projects.tsx      → project data + grid        (card: ProjectCard.tsx)
-    Experience.tsx    → experience data + timeline (each entry has a banner photo)
-    Resume.tsx        → resume.pdf viewer
-    Design.tsx        → design data + hobbies
-    Misc.tsx          → music page (Spotify embed + 8-bit mixtape)
-    Contact.tsx       → links
-    DeskWidgets.tsx   → draggable right-hand items (This PC, music CD, liner notes, mini player, sticky note)
-    MusicPlayer.tsx   → LCD, buttons, track list (used by Misc + the mini player)
-    Equalizer.tsx     → bouncing level meter
-  hooks/
-    useChiptune.ts    → web-audio chiptune player (3 generated tracks) + camera shutter click
-    useDragItems.ts   → drag + clamp logic for the right-hand widgets
-  lib/
-    desk.ts           → screen ids, titles, nav order, contact links
-    sx.ts             → tiny helper: sx("display:flex;gap:8px") → React style object
-public/               → project / design images, resume.pdf, about-photo.png
+├── app/
+│   ├── layout.tsx        # Loads Google Fonts (Righteous, VT323, Silkscreen, Courier Prime)
+│   ├── page.tsx          # Entry point rendering <Desk />
+│   └── globals.css       # Retro desktop palette, monitor bezel, window & animation styles
+├── components/
+│   ├── Desk.tsx          # Main viewport shell, active screen state & shutter flash effect
+│   ├── Nav.tsx           # Top menubar + camera plate (dial, LINDA plate, file keys, shutter)
+│   ├── FileIcons.tsx     # Left-hand clickable desktop icons (about.txt, projects, etc.)
+│   ├── Monitor.tsx       # Beige monitor frame & Finder-style window router
+│   ├── About.tsx         # Typing tagline animation + "say hello" modal
+│   ├── Projects.tsx      # Project data array & grid layout (renders ProjectCard.tsx)
+│   ├── Experience.tsx    # Experience data & timeline with banner photos
+│   ├── Resume.tsx        # Embedded resume.pdf viewer
+│   ├── Design.tsx        # Design showcase & hobbies
+│   ├── Misc.tsx          # Music hub (Spotify embed + 8-bit mixtape)
+│   ├── Contact.tsx       # Social & contact links
+│   ├── DeskWidgets.tsx   # Draggable right-zone items (CD, sticky note, mini player, etc.)
+│   ├── MusicPlayer.tsx   # LCD display, playback controls & tracklist
+│   └── Equalizer.tsx     # Animated audio level meter
+├── hooks/
+│   ├── useChiptune.ts    # Web Audio API chiptune generator + camera shutter click SFX
+│   └── useDragItems.ts   # Pointer drag & viewport-zone clamping logic for widgets
+└── lib/
+    ├── desk.ts           # Screen IDs, window titles, navigation order & contact links
+    └── sx.ts             # Helper converting CSS strings into React style objects
+public/                   # Static assets: project/design images, resume.pdf, about-photo.png
 ```
 
-## Editing content
+---
 
-- **Projects / designs / experience:** edit the arrays at the top of `Projects.tsx`, `Design.tsx` and `Experience.tsx`. Put images in `public/` and set `image: "file-name.png"`. A missing image shows a dotted placeholder; for experience that placeholder carries a `[PHOTO]` tag.
-- **Contact links:** `LINKS` in `src/lib/desk.ts` (used by About + Contact).
-- **Screen order:** `KEYS`, `MENU`, `FILE_ICONS` and `DIAL` in `src/lib/desk.ts`. The left icons, camera keys and menubar all follow the same order.
-- **Songs:** `TRACKS` in `src/hooks/useChiptune.ts`. To play a real song, put the mp3 in `public/music/` and add `file: "/music/your-song.mp3"` (and a `name`) to a track. Tracks without a `file` play the built-in chiptune. The Spotify player on the music page is separate: change the track id in `src/components/Misc.tsx`.
-- **Colors:** CSS in `globals.css`; the same palette is in `tailwind.config.ts` (`bg-cream`, `text-ink`, ...).
+## Customization Guide
 
-## Placeholders still to fill in
+* **Projects, Designs & Experience:** Update the data arrays at the top of `Projects.tsx`, `Design.tsx`, and `Experience.tsx`. Place images in `public/` and reference them via `image: "file-name.png"`. Missing images fall back to a dotted placeholder (tagged `[PHOTO]` in Experience).
+* **Navigation & Contact Links:** Edit `LINKS`, `KEYS`, `MENU`, `FILE_ICONS`, and `DIAL` in `src/lib/desk.ts` to reorder screens or update social URLs.
+* **Audio & Mixtape Tracks:** Configure `TRACKS` in `src/hooks/useChiptune.ts`. Tracks without a `file` property automatically synthesize 8-bit chiptunes; to use custom audio, drop an `.mp3` into `public/music/` and add `file: "/music/your-song.mp3"`. Update the Spotify embed ID directly in `src/components/Misc.tsx`.
+* **Theme & Colors:** Customize color tokens in `src/app/globals.css` and `tailwind.config.ts` (`bg-cream`, `text-ink`, etc.).
 
-Anything in `[BRACKETS]` is a placeholder: song names, the duolingo language, the email link in `LINKS`, and the empty "project four", "design four" and experience entries.
+---
+
+## Content Checklist
+
+Items marked with `[BRACKETS]` in the codebase are placeholders ready to be replaced before deployment:
+- [ ] Custom song names in `useChiptune.ts`
+- [ ] Duolingo language entry
+- [ ] Email address in `LINKS` (`src/lib/desk.ts`)
+- [ ] Placeholder entries for `"project four"`, `"design four"`, and Experience items
