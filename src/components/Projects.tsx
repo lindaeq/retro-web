@@ -1,8 +1,26 @@
 import ProjectCard from "./ProjectCard";
 import type { Project } from "./ProjectCard";
-import { sx } from "@/lib/sx";
 
 const projects: Project[] = [
+  {
+    title: "brighteye",
+    link: "https://github.com/lindaeq/BrightEye",
+    award: "🏆 WINNER · HACK WESTERN 13",
+    tech: "raspberry pi 5 · qnx · arduino · opencv · react · typescript · web serial · flask · node.js · postgresql · gemini api",
+    description:
+      "30-second space arcade game that tracks eye movements and reaction times to help pre-assess ADHD and dyspraxia in children.",
+    image: "project-brighteye.jpg",
+  },
+  {
+    title: "bumpitup",
+    link: "https://github.com/lindaeq/BUMPitup",
+    award: "🏆 OVERALL WINNER · UW WIE HACKS",
+    tech: "react 19 · typescript · tailwind css · firebase · node.js · openai api · recharts",
+    description:
+      "Mobile-first prenatal physio app that helps women stay active during pregnancy and rebuild strength after birth.",
+    images: ["project-bumpitup-1.jpg", "project-bumpitup-2.png"],
+    imageFit: "contain",
+  },
   {
     title: "auri",
     link: "https://github.com/lindaeq/auri",
@@ -20,15 +38,7 @@ const projects: Project[] = [
     image: "project-digdeep.png",
   },
   {
-    title: "codemap",
-    link: "https://github.com/lindaeq/codemap",
-    tech: "python · fastapi · uvicorn · ast · vanilla js · html/css · render",
-    description:
-      "Static analysis tool that parses Python codebases with AST to map imports, functions, classes, and complexity, then renders it as an interactive dependency graph.",
-    image: "project-codemap.png",
-  },
-  {
-    title: "project four",
+    title: "project five",
     link: "#",
     tech: "tech stack tbd",
     description: "Details coming soon.",
@@ -40,7 +50,7 @@ export default function Projects() {
     <div className="fc">
       <h1 className="h1">projects</h1>
       <p className="sub">what i&apos;ve been making...</p>
-      <div style={sx("display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px")}>
+      <div className="proj-grid">
         {projects.map((p) => (
           <ProjectCard key={p.title} {...p} />
         ))}

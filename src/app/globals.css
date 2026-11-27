@@ -57,7 +57,10 @@ html,body{margin:0;height:100%;overflow:hidden}
 .mb:active{transform:translate(3px,3px);box-shadow:none}
 .mb.pk{background:#ff5fa2}
 .card{border:3px solid #2b1a14;background:#fff4ea;box-shadow:4px 4px 0 #2b1a14;display:flex;flex-direction:column;box-sizing:border-box}
-.ph{aspect-ratio:16/10;border-bottom:3px solid #2b1a14;background-size:cover;background-position:center;background-color:#f4b6c8}
+.ph{position:relative;overflow:hidden;aspect-ratio:16/10;border-bottom:3px solid #2b1a14;background-size:cover;background-position:center;background-color:#f4b6c8}
+.ribbon{position:absolute;top:20px;right:-36px;width:130px;padding:3px 0;transform:rotate(45deg);background:#ffe3a8;border-top:2px solid #2b1a14;border-bottom:2px solid #2b1a14;box-shadow:0 2px 0 rgba(43,26,20,.25);text-align:center;font:700 9px/1.2 var(--silk),monospace;letter-spacing:.06em;color:#2b1a14;pointer-events:none;z-index:2}
+.proj-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
+@media(min-width:1450px){.proj-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .row{display:flex;gap:10px;width:100%;text-align:left;padding:10px 12px;border:0;border-bottom:2px solid #2b1a14;background:#fff4ea;cursor:pointer;font:400 21px/1.1 var(--vt),monospace;color:#2b1a14}
 .row[data-on="true"],.row:hover{background:#ffc2dc}
 .lk{display:flex;gap:12px;align-items:center;padding:14px 12px;border-bottom:2px solid #2b1a14;text-decoration:none;color:#2b1a14}
