@@ -3,15 +3,15 @@ import { sx } from "@/lib/sx";
 
 export default function About() {
   return (
-    <div className="fc" style={sx("display:flex;flex-direction:column;justify-content:center")}>
+    <div className="fc ctr">
       <div
         style={sx(
-          "font:700 clamp(64px,9vw,128px)/.95 var(--vt),monospace;color:#2b1a14;margin:0 0 10px -.05em;letter-spacing:.01em"
+          "font:700 clamp(44px,min(9vw,15vh),128px)/.95 var(--vt),monospace;color:#2b1a14;margin:0 0 10px -.05em;letter-spacing:.01em"
         )}
       >
         LINDA QI
       </div>
-      <div style={sx("font:400 clamp(18px,2.1vw,28px)/1.1 var(--vt),monospace;white-space:nowrap")}>
+      <div style={sx("font:400 clamp(16px,min(2.1vw,3.4vh),28px)/1.1 var(--vt),monospace;white-space:nowrap")}>
         <span className="typ">CS @ UNIVERSITY OF WATERLOO</span>
       </div>
 

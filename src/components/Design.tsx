@@ -4,36 +4,36 @@ import { sx } from "@/lib/sx";
 
 const designs: Project[] = [
   {
-    title: "neapolitan web",
-    tech: "web design concept",
-    description: "an alternate pastel neapolitan concept for this portfolio site.",
-    image: "design-neapolitan.png",
+    title: "women in cs",
+    tech: "social media posts · event promotion",
+    description:
+      "Social media posts for University of Waterloo Women in Computer Science (WiCS), including promotion for the career panel.",
+    image: "design-wics.png",
   },
   {
     title: "spark of luminosity",
     tech: "event poster · sponsor poster",
     description:
-      "event and sponsor poster designs for lunarhacks x syrc's spark of luminosity hackathon.",
+      "Event and sponsor poster designs for LunarHacks x SYRC's Spark of Luminosity hackathon.",
     image: "design-luminosity.png",
   },
   {
     title: "scrapyard ottawa",
     tech: "instagram posts · badges/lanyards",
     description:
-      "instagram posts plus hacker, organizer, mentor, and sponsor badges/lanyards for scrapyard ottawa.",
+      "Instagram posts plus hacker, organizer, mentor, and sponsor badges and lanyards for Scrapyard Ottawa.",
     image: "design-scrapyard.png",
   },
   {
-    title: "merivale volleyball",
-    tech: "[DESIGN TYPE]",
-    description: "[SHORT DESCRIPTION.]",
-    image: "design-volleyball.png",
+    title: "neapolitan web",
+    tech: "web design concept",
+    description: "An alternate pastel Neapolitan concept for this portfolio site.",
+    image: "design-neapolitan.png",
   },
   {
-    title: "8729 pins",
-    tech: "[DESIGN TYPE]",
-    description: "[SHORT DESCRIPTION.]",
-    image: "design-8729-pins.png",
+    title: "design four",
+    tech: "tech stack tbd",
+    description: "Details coming soon.",
   },
 ];
 

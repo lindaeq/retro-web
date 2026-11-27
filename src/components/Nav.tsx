@@ -37,7 +37,7 @@ function CameraPlate({ app, shots, onOpen, onShoot }: Props) {
           <i />
           <b />
         </div>
-        <div style={sx("font:700 26px/1 var(--silk),monospace;letter-spacing:.08em;border:4px solid #2b1a14;padding:8px 14px;background:#fff4ea")}>
+        <div className="nm" style={sx("font:700 26px/1 var(--silk),monospace;letter-spacing:.08em;border:4px solid #2b1a14;padding:8px 14px;background:#fff4ea")}>
           LINDA
         </div>
         <nav aria-label="Main" style={sx("display:flex;flex-wrap:wrap;gap:8px;flex:1;justify-content:center")}>

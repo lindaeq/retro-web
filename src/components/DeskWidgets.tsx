@@ -125,7 +125,7 @@ export default function DeskWidgets({ music, onOpen }: Props) {
         data-item="1"
         onPointerDown={(e) => startDrag("note", e)}
         style={{
-          ...place("note", 300, 190),
+          ...place("note", 300, 210),
           ...sx("cursor:grab;background:#ffe3a8;border:4px solid #2b1a14;box-shadow:8px 8px 0 #2b1a14;padding:22px 22px 18px"),
         }}
       >
@@ -138,10 +138,10 @@ export default function DeskWidgets({ music, onOpen }: Props) {
         <div className="lab" style={sx("margin-bottom:8px")}>
           STICKY NOTE
         </div>
-        <div style={sx("font:400 28px/1.15 var(--vt),monospace")}>
-          current obsession:
+        <div style={sx("font:400 26px/1.15 var(--vt),monospace")}>
+          currently:
           <br />
-          <b style={sx("font-weight:400;background:#ff9ccd;padding:0 4px")}>ur mother</b>
+          <b style={sx("font-weight:400;background:#ff9ccd;padding:0 4px")}>studying for midterms :(</b>
           <br />
           duolingo streak: 689
         </div>

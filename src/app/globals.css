@@ -99,3 +99,30 @@ html,body{margin:0;height:100%;overflow:hidden}
 @media(max-height:820px){.icons{zoom:.8}}
 @media(max-width:1000px){.rz{display:none}.main{grid-template-columns:110px minmax(0,1fr);padding:14px 20px 36px}.plate{margin:10px 20px 0}}
 @media(max-width:700px){.main{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);gap:10px;padding:10px}.icons{flex-direction:row;overflow-x:auto;justify-content:flex-start;gap:6px;zoom:.75}.plate{margin:8px 10px 0}.hm{display:none!important}.fc{padding:18px}}
+
+/* vertically center a screen's content, but still let it scroll from the very top when it doesn't fit */
+.fc.ctr{display:flex;flex-direction:column}
+.fc.ctr>:first-child{margin-top:auto!important}
+.fc.ctr>:last-child{margin-bottom:auto!important}
+
+/* smaller laptop screens: tighten the header, bezel and gaps so the window keeps its room */
+@media(max-width:1250px){
+  .main{grid-template-columns:110px minmax(420px,1.4fr) minmax(330px,1fr);gap:16px;padding-left:24px;padding-right:24px}
+  .plate{margin-left:24px;margin-right:24px}
+  .kb{min-width:0;padding:5px 8px 3px}
+  .pin .hm{display:none}
+}
+@media(max-height:820px){
+  .mbar{height:28px}
+  .plate{margin-top:8px;padding:5px 10px;border-width:4px;box-shadow:0 4px 0 #2b1a14}
+  .pin{padding:4px 10px;gap:6px 12px;border-width:3px}
+  .pin .nm{font-size:18px;padding:5px 10px;border-width:3px}
+  .dial{width:40px;height:40px;border-width:3px}
+  .dial b{inset:10px}
+  .shut{width:38px;height:38px;border-width:4px;box-shadow:inset 0 0 0 3px #ffc2dc,0 4px 0 #2b1a14}
+  .kb{padding:3px 8px 2px;font-size:9px;border-width:3px;border-bottom-width:6px;gap:1px}
+  .kb b{font-size:13px}
+  .main{padding-top:12px;padding-bottom:26px}
+  .mon{padding:8px 12px 8px;border-radius:20px}
+  .screen{margin:6px 0;padding:10px}
+}

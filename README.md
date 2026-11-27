@@ -48,9 +48,9 @@ public/               → project / design images, resume.pdf, about-photo.png
 - **Projects / designs / experience:** edit the arrays at the top of `Projects.tsx`, `Design.tsx` and `Experience.tsx`. Put images in `public/` and set `image: "file-name.png"`. A missing image shows a dotted placeholder; for experience that placeholder carries a `[PHOTO]` tag.
 - **Contact links:** `LINKS` in `src/lib/desk.ts` (used by About + Contact).
 - **Screen order:** `KEYS`, `MENU`, `FILE_ICONS` and `DIAL` in `src/lib/desk.ts`. The left icons, camera keys and menubar all follow the same order.
-- **Songs:** `TRACKS` in `src/hooks/useChiptune.ts` (name, tempo, waveform, notes).
+- **Songs:** `TRACKS` in `src/hooks/useChiptune.ts`. To play a real song, put the mp3 in `public/music/` and add `file: "/music/your-song.mp3"` (and a `name`) to a track. Tracks without a `file` play the built-in chiptune. The Spotify player on the music page is separate: change the track id in `src/components/Misc.tsx`.
 - **Colors:** CSS in `globals.css`; the same palette is in `tailwind.config.ts` (`bg-cream`, `text-ink`, ...).
 
 ## Placeholders still to fill in
 
-Anything in `[BRACKETS]` is a placeholder: song names, the design descriptions for merivale volleyball and 8729 pins, the duolingo language, the email link in `LINKS`, and the empty "project four" / experience entries.
+Anything in `[BRACKETS]` is a placeholder: song names, the duolingo language, the email link in `LINKS`, and the empty "project four", "design four" and experience entries.

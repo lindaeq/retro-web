@@ -20,7 +20,7 @@ export default function Resume() {
       <img
         src="/resume-1.png"
         alt="Linda's resume"
-        style={sx("display:block;width:100%;max-width:560px;margin:0 auto;border:4px solid #2b1a14;box-shadow:6px 6px 0 #2b1a14;background:#fff")}
+        style={sx("display:block;width:100%;margin:0;border:4px solid #2b1a14;box-shadow:6px 6px 0 #2b1a14;background:#fff")}
       />
     </div>
   );

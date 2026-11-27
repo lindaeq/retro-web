@@ -3,31 +3,44 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface Track {
+  /** shown on the player */
   name: string;
+  /**
+   * Optional real song. Drop an mp3 into /public/music and set e.g. file: "/music/my-song.mp3".
+   * Without a file the track plays the little generated chiptune below instead.
+   */
+  file?: string;
+  /** chiptune only: ms per note, waveform and the note frequencies (0 = rest) */
   ms: number;
   wave: OscillatorType;
   notes: number[];
 }
 
+// ✏️ edit the song list here
 export const TRACKS: Track[] = [
   { name: "[SONG 01]", ms: 190, wave: "triangle", notes: [523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 880, 698.46, 493.88, 587.33, 783.99, 587.33, 523.25, 659.25, 1046.5, 783.99] },
   { name: "[SONG 02]", ms: 240, wave: "sine", notes: [440, 523.25, 659.25, 523.25, 392, 493.88, 587.33, 493.88, 349.23, 440, 523.25, 440, 329.63, 415.3, 493.88, 659.25] },
   { name: "[SONG 03]", ms: 150, wave: "square", notes: [659.25, 0, 659.25, 783.99, 0, 880, 783.99, 0, 659.25, 587.33, 523.25, 0, 587.33, 659.25, 0, 0] },
 ];
 
-export const TRACK_SECONDS = 90;
+/** length of the generated chiptune tracks, in seconds */
+const CHIPTUNE_SECONDS = 90;
 
 type AudioCtor = typeof AudioContext;
 
-/** tiny web-audio chiptune player (3 generated tracks) plus the camera shutter click */
+/**
+ * Music player: plays real audio files when a track has `file`,
+ * otherwise a tiny web-audio chiptune. Also makes the camera shutter click.
+ */
 export function useChiptune() {
   const ac = useRef<AudioContext | null>(null);
+  const el = useRef<HTMLAudioElement | null>(null);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
   const step = useRef(0);
   const track = useRef(0);
   const elapsed = useRef(0);
   const playing = useRef(false);
-  const [ui, setUi] = useState({ playing: false, track: 0, elapsed: 0 });
+  const [ui, setUi] = useState({ playing: false, track: 0, elapsed: 0, duration: TRACKS[0].file ? 0 : CHIPTUNE_SECONDS });
 
   const ensureAudio = useCallback(() => {
     try {
@@ -63,9 +76,10 @@ export function useChiptune() {
     }
   }, []);
 
-  const stopTimer = () => {
+  const stopSound = () => {
     if (timer.current) clearInterval(timer.current);
     timer.current = null;
+    el.current?.pause();
   };
 
   const goTrack = useCallback(
@@ -75,8 +89,9 @@ export function useChiptune() {
       step.current = 0;
       elapsed.current = 0;
       playing.current = was;
-      stopTimer();
-      setUi({ playing: was, track: i, elapsed: 0 });
+      stopSound();
+      if (el.current) el.current.currentTime = 0;
+      setUi({ playing: was, track: i, elapsed: 0, duration: TRACKS[i].file ? 0 : CHIPTUNE_SECONDS });
       if (was) {
         ensureAudio();
         begin();
@@ -87,13 +102,32 @@ export function useChiptune() {
   );
 
   const begin = useCallback(() => {
-    stopTimer();
+    stopSound();
     const tr = TRACKS[track.current];
+
+    if (tr.file) {
+      // real audio file
+      const audio = el.current ?? (el.current = new Audio());
+      if (audio.getAttribute("src") !== tr.file) audio.src = tr.file;
+      audio.onloadedmetadata = () => setUi((u) => ({ ...u, duration: audio.duration || 0 }));
+      audio.ontimeupdate = () => {
+        elapsed.current = audio.currentTime;
+        setUi((u) => ({ ...u, elapsed: audio.currentTime }));
+      };
+      audio.onended = () => goTrack((track.current + 1) % TRACKS.length, true);
+      audio.play().catch(() => {
+        playing.current = false;
+        setUi((u) => ({ ...u, playing: false }));
+      });
+      return;
+    }
+
+    // generated chiptune
     timer.current = setInterval(() => {
       blip(tr.notes[step.current % tr.notes.length]);
       step.current += 1;
       elapsed.current += tr.ms / 1000;
-      if (elapsed.current >= TRACK_SECONDS) {
+      if (elapsed.current >= CHIPTUNE_SECONDS) {
         goTrack((track.current + 1) % TRACKS.length, true);
       } else {
         setUi((u) => ({ ...u, elapsed: elapsed.current }));
@@ -104,7 +138,7 @@ export function useChiptune() {
   const toggle = useCallback(() => {
     if (playing.current) {
       playing.current = false;
-      stopTimer();
+      stopSound();
       setUi((u) => ({ ...u, playing: false }));
     } else {
       ensureAudio();
@@ -139,7 +173,7 @@ export function useChiptune() {
 
   useEffect(
     () => () => {
-      stopTimer();
+      stopSound();
       void ac.current?.close();
     },
     []

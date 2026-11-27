@@ -1,9 +1,10 @@
-import { TRACKS, TRACK_SECONDS } from "@/hooks/useChiptune";
+import { TRACKS } from "@/hooks/useChiptune";
 import type { Chiptune } from "@/hooks/useChiptune";
 import { sx } from "@/lib/sx";
 import Equalizer from "./Equalizer";
 
 const pad = (n: number) => String(n).padStart(2, "0");
+const fmt = (sec: number) => (sec > 0 ? `${pad(Math.floor(sec / 60))}:${pad(Math.floor(sec % 60))}` : "--:--");
 
 interface Props {
   music: Chiptune;
@@ -13,7 +14,6 @@ interface Props {
 
 /** LCD readout, transport buttons and track list. Shared by the music page and the mini player. */
 export default function MusicPlayer({ music, compact = false }: Props) {
-  const time = `${pad(Math.floor(music.elapsed / 60))}:${pad(Math.floor(music.elapsed % 60))}`;
   return (
     <>
       <div
@@ -27,7 +27,7 @@ export default function MusicPlayer({ music, compact = false }: Props) {
           <span>
             TRK 0{music.track + 1}/03 {music.playing ? "▶" : "II"}
           </span>
-          <span>{time} / 01:30</span>
+          <span>{fmt(music.elapsed)} / {fmt(music.duration)}</span>
         </div>
         <div
           style={sx(
@@ -36,7 +36,7 @@ export default function MusicPlayer({ music, compact = false }: Props) {
         >
           {TRACKS[music.track].name}
         </div>
-        <Equalizer playing={music.playing} elapsed={music.elapsed} trackSeconds={TRACK_SECONDS} barHeight={compact ? 8 : 12} />
+        <Equalizer playing={music.playing} elapsed={music.elapsed} trackSeconds={music.duration} barHeight={compact ? 8 : 12} />
       </div>
 
       <div style={sx(compact ? "display:flex;gap:8px" : "display:flex;gap:10px;margin:14px 0")}>
@@ -62,7 +62,7 @@ export default function MusicPlayer({ music, compact = false }: Props) {
           >
             <span style={{ width: compact ? 28 : 30 }}>0{i + 1}</span>
             <span style={{ flex: 1 }}>{t.name}</span>
-            <span>01:30</span>
+            <span>{t.file ? "" : "01:30"}</span>
           </button>
         ))}
       </div>

@@ -10,7 +10,7 @@ interface Props {
 
 /** 20-bar level meter: filled bars show progress, all bars bounce while playing */
 export default function Equalizer({ playing, elapsed, trackSeconds, barHeight }: Props) {
-  const filled = Math.round(Math.min(1, elapsed / trackSeconds) * 20);
+  const filled = trackSeconds > 0 ? Math.round(Math.min(1, elapsed / trackSeconds) * 20) : 0;
   return (
     <div style={sx("display:flex;gap:3px;align-items:center;height:22px")}>
       {Array.from({ length: 20 }, (_, i) => (

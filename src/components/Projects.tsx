@@ -8,7 +8,7 @@ const projects: Project[] = [
     link: "https://github.com/lindaeq/auri",
     tech: "figma · react · next.js · typescript · edge impulse · google gemini api · arduino · socket.io",
     description:
-      "ai-powered wearable that turns important sounds into vibrations and led alerts for deaf and hard-of-hearing users",
+      "AI-powered wearable that turns important sounds into vibrations and LED alerts for deaf and hard-of-hearing users.",
     image: "project-auri.png",
   },
   {
@@ -16,7 +16,7 @@ const projects: Project[] = [
     link: "https://github.com/SuhanaAkhter/DigDeep",
     tech: "html · css · python · js · sqlite",
     description:
-      "web app for volleyball coaches and players to track and analyze team and individual performance stats, with role-based dashboards, player and game management, and per-set stat tracking.",
+      "Web app for volleyball coaches and players to track and analyze team and individual performance stats, with role-based dashboards, player and game management, and per-set stat tracking.",
     image: "project-digdeep.png",
   },
   {
@@ -24,14 +24,14 @@ const projects: Project[] = [
     link: "https://github.com/lindaeq/codemap",
     tech: "python · fastapi · uvicorn · ast · vanilla js · html/css · render",
     description:
-      "static analysis tool that parses python codebases with ast to map imports, functions, classes, and complexity, then renders it as an interactive dependency graph",
+      "Static analysis tool that parses Python codebases with AST to map imports, functions, classes, and complexity, then renders it as an interactive dependency graph.",
     image: "project-codemap.png",
   },
   {
     title: "project four",
     link: "#",
     tech: "tech stack tbd",
-    description: "details coming soon.",
+    description: "Details coming soon.",
   },
 ];
 
