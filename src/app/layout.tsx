@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Courier_Prime, Righteous, Roboto, Silkscreen, VT323 } from "next/font/google";
 import "./globals.css";
 
@@ -22,7 +23,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${righteous.variable} ${roboto.variable} ${vt323.variable} ${silkscreen.variable} ${courier.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
