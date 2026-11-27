@@ -25,7 +25,7 @@ export default function MusicPlayer({ music, compact = false }: Props) {
       >
         <div style={sx(`display:flex;justify-content:space-between;font:400 ${compact ? 20 : 24}px/1 var(--vt),monospace`)}>
           <span>
-            TRK 0{music.track + 1}/03 {music.playing ? "▶" : "II"}
+            TRK {pad(music.track + 1)}/{pad(TRACKS.length)} {music.playing ? "▶" : "II"}
           </span>
           <span>{fmt(music.elapsed)} / {fmt(music.duration)}</span>
         </div>
@@ -60,9 +60,12 @@ export default function MusicPlayer({ music, compact = false }: Props) {
             onClick={() => music.pick(i)}
             style={compact ? sx("padding:6px 10px;font-size:19px") : undefined}
           >
-            <span style={{ width: compact ? 28 : 30 }}>0{i + 1}</span>
-            <span style={{ flex: 1 }}>{t.name}</span>
-            <span>{t.file ? "" : "01:30"}</span>
+            <span style={{ width: compact ? 28 : 30 }}>{pad(i + 1)}</span>
+            <span style={{ flex: 1 }}>
+              {t.name}
+              {!compact && t.artist ? <span style={{ opacity: 0.65, fontSize: "0.85em" }}> · {t.artist}</span> : null}
+            </span>
+            <span>{t.file ? "" : fmt(t.duration)}</span>
           </button>
         ))}
       </div>

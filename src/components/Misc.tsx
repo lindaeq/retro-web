@@ -28,7 +28,7 @@ export default function Misc({ music }: { music: Chiptune }) {
         OPEN HONEYBEE ON SPOTIFY ↗
       </a>
       <div className="lab" style={sx("border-bottom:3px solid #2b1a14;padding-bottom:8px;margin:28px 0 14px")}>
-        8-BIT MIXTAPE
+        8-BIT CLASSICS
       </div>
       <MusicPlayer music={music} />
     </div>
