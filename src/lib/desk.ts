@@ -23,7 +23,7 @@ export const TITLES: Record<AppId, string> = {
   projects: "projects",
   experience: "experience",
   resume: "resume.pdf",
-  design: "design + hobbies",
+  design: "misc",
   music: "music",
   contact: "contact",
 };
@@ -39,13 +39,13 @@ export const DIAL: Record<AppId, number> = {
   contact: 5,
 };
 
-export const KEYS: { letter: string; label: string; app: AppId }[] = [
-  { letter: "A", label: "ABOUT", app: "about" },
-  { letter: "P", label: "PROJECTS", app: "projects" },
-  { letter: "E", label: "EXPERIENCE", app: "experience" },
-  { letter: "R", label: "RESUME", app: "resume" },
-  { letter: "D", label: "DESIGN", app: "design" },
-  { letter: "M", label: "MUSIC", app: "music" },
+export const KEYS: { label: string; app: AppId }[] = [
+  { label: "ABOUT", app: "about" },
+  { label: "PROJECTS", app: "projects" },
+  { label: "EXPERIENCE", app: "experience" },
+  { label: "RESUME", app: "resume" },
+  { label: "MISC", app: "design" },
+  { label: "MUSIC", app: "music" },
 ];
 
 export const MENU: { label: string; app: AppId }[] = [
@@ -58,7 +58,7 @@ export const FILE_ICONS: { label: string; icon: string; app: AppId }[] = [
   { label: "projects", icon: "i-folder", app: "projects" },
   { label: "experience", icon: "i-case", app: "experience" },
   { label: "resume.pdf", icon: "i-doc", app: "resume" },
-  { label: "design / hobbies", icon: "i-pal", app: "design" },
+  { label: "misc", icon: "i-pal", app: "design" },
 ];
 
 /** images live in /public (same as the old site) */

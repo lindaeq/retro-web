@@ -43,7 +43,6 @@ function CameraPlate({ app, shots, onOpen, onShoot }: Props) {
         <nav aria-label="Main" style={sx("display:flex;flex-wrap:wrap;gap:8px;flex:1;justify-content:center")}>
           {KEYS.map((k) => (
             <button key={k.app} className="kb" data-on={app === k.app} onClick={() => onOpen(k.app)}>
-              <b>{k.letter}</b>
               {k.label}
             </button>
           ))}
